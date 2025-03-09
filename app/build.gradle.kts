@@ -43,7 +43,7 @@ android {
 
 // Allow references to generated code
 kapt {
-  correctErrorTypes = true
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -56,16 +56,25 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
-
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.gson)
+     implementation(libs.retrofit){
+        exclude(module = "okhttp")
+    }
+     implementation(libs.retrofit.converter.gson)
     implementation(libs.retrofit.okhttp)
     implementation(libs.retrofit.urlConnection)
     implementation(libs.retrofit.logging)
     implementation(libs.gson)
+    implementation(libs.dagger.hilt.compose)
+    implementation(libs.coil)
+    implementation(libs.compose.navigation)
+    implementation(libs.compose.constraint)
+
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    kapt(libs.room.kapt)
+    implementation(libs.room.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -74,6 +83,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.androidx.hilt.navigation.compose.v100)
 
 }

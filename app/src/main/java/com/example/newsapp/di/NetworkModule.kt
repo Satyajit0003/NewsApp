@@ -20,19 +20,19 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApplication(@ApplicationContext context: Context) : NewsApp {
+    fun provideApplication(@ApplicationContext context: Context): NewsApp {
         return context as NewsApp
     }
 
-    @Singleton
     @Provides
-    fun provideApplicationContext(@ApplicationContext context: Context): Context {
+    @Singleton
+    fun provideContext(@ApplicationContext context: Context): Context {
         return context
     }
 
     @Singleton
     @Provides
-    fun provideRetrofit(client: OkHttpClient) : Retrofit {
+    fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(client)
             .baseUrl(BASE_URL)
@@ -42,17 +42,16 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient() : OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .readTimeout(30L, java.util.concurrent.TimeUnit.SECONDS)
             .writeTimeout(30L, java.util.concurrent.TimeUnit.SECONDS)
             .build()
     }
 
-    @Singleton
     @Provides
-    fun providesNewsApi(retrofit: Retrofit) : NewApi {
+    @Singleton
+    fun provideNewsApi(retrofit: Retrofit): NewApi {
         return retrofit.create(NewApi::class.java)
     }
-
 }
