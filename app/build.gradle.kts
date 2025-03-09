@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.model.Kapt
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -58,10 +60,11 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
-     implementation(libs.retrofit){
+
+    implementation(libs.retrofit){
         exclude(module = "okhttp")
     }
-     implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.converter.gson)
     implementation(libs.retrofit.okhttp)
     implementation(libs.retrofit.urlConnection)
     implementation(libs.retrofit.logging)
